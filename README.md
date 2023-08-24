@@ -34,3 +34,5 @@
 ``>>c.AdditionalProperties.WallTime = '72:00:00';  ``  
 ``>>c.AdditionalProperties.MemUsage = '4g';  ``  
 ``>>j = batch(c, @qsm_par_server, 1,{}, 'Pool',296, 'CurrentFolder','/scratch/project_2001208/Eemil','AutoAddClientPath', false);``  
+
+You should now be able to find your job on the Puhti dashboard, It might take some time for it to start processing. From my experience, checking the status via matlab is unreliable.
