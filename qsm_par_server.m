@@ -1,4 +1,4 @@
-function t = qsm_par_server_test2
+function t = qsm_par_server
 t = [];
 % List the tree point cloud files, replace the folder with yours
 trees = dir('qsm_batch_puhti/*.las');
@@ -14,9 +14,7 @@ parfor i = 1:length(trees)
 
     % Normalise the point cloud coordinates
     %Center = mean(P);
-    % Here I have a general center point that I subtracted from all of the
-    % trees, replace this with your own, this was from Leipzig area in
-    % Germany
+    % Here I have a center point that I subtracted from all of the trees
     Center = [306211.2431640625, 5695182.041666667, 95.88448810572918];
     Q = P - Center;
     % Change the individual tree cloud type so that it works with the QSM
@@ -31,15 +29,15 @@ parfor i = 1:length(trees)
     Q = filter_trees(Q, inputs);
     % Format output
     formatSpec = strrep(trees(i).name, '.las', '');
-    str = sprintf(formatSpec,i);
     % Create models
-    QSM = make_models(Q, str, 5, inputs);
+    QSM = make_models(Q, formatSpec, 5, inputs);
     % Format optimal output
     formatSpec = [formatSpec, '_opt'];
-    str = sprintf(formatSpec,i);
     % Select optimal model and save it
     [TreeData,OptModels,OptInputs,OptQSM] = select_optimum(QSM,'trunk+1branch+hbranch_mean_dis',formatSpec);
-    t = [t, OptQSM];
-    save_model_text(OptQSM,str, Center);
+    % save_model_text(OptQSM,formatSpec, Center); -- This is for a slightly
+    % modified version of the save_model_text.m which additionally outputs the trunk
+    % base coordinates 
+    save_model_text(OptQSM,formatSpec)
 end
 end
