@@ -41,6 +41,6 @@ You should now be able to find your job on the Puhti dashboard, It might take so
 
 If you processed a large amount of trees, the results can be a little hard to download, however you can zip them by going to your directory in puhti dashboard.  
 - click on the "Open in terminal" button and type  ``find results/ -type f -mtime -7 -exec zip -r results.zip {} \;``
-  - where results is the directory where you have your QSM results and results.zip is the destination zip file.
+  - where ``results/`` is the directory where you have your QSM results and ``results.zip`` is the destination zip file.
   - The ``-type f`` means that it only takes files and no folders into the zipping.
   - The ``-mtime -7`` means that it doesn't take into account files that are older than seven days. It is useful if you process the trees in batches and don't want to download some older results again.
