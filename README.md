@@ -39,7 +39,7 @@
 You should now be able to find your job on the Puhti dashboard, It might take some time for it to start processing. From my experience, checking the status via matlab is unreliable.
 
 
-If you processed a large amount of trees, the results can be a little hard to download, however you can zip them by going to your directory in puhti dashboard.
+If you processed a large amount of trees, the results can be a little hard to download, however you can zip them by going to your directory in puhti dashboard.  
 - click on the "Open in terminal" button and type  ``find results/ -type f -mtime -7 -exec zip -r results.zip {} \;``
   - where results is the directory where you have your QSM results and results.zip is the destination zip file.
   - The ``-type f`` means that it only takes files and no folders into the zipping.
