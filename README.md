@@ -11,7 +11,8 @@
     ``>>Username on Puhti (e.g. joe): yourUsername``
 - The segmented trees should be uploaded to puhti before running QSM creation.
   - You will need the folder path to the segmented trees
-- You could also do the segmentation on puhti. I haven’t done that so I’m not sure what’s the best way. To utilise the parallel processing on Puhti you should probably use the tiling approach and run each tile in a separate parallel process.
+  - You could also do the segmentation on puhti. I haven’t done that so I’m not sure what’s the best way. To utilise the parallel processing on Puhti you should probably use the tiling approach and run each tile in a separate parallel process.
+## Processing  
 - To utilise the multiple cores on Puhti, the parallelisation should be done on a separate “parent” script from which you run the QSM scripts. I didn’t get the make_models_parallel.m -script working correctly as is. An example script is provided in this repository (qsm_par_server.m). Make sure to check that the parameters are modified for you needs
 - Below is an example of how I would run a large job of processing 296 trees in parallel. The details for the parcluster configurations can be found here https://docs.csc.fi/apps/matlab/ under "Configuring jobs".
   - Since there are over 40 jobs, I'm using the 'large' QueueName.
