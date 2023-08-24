@@ -24,10 +24,11 @@
   - I'm using the maximum time limit of 72 hours or three days for the 'large' partition
   - More details about the partitions can be found here: https://docs.csc.fi/computing/running/batch-job-partitions/
   - For each node 4g of memory is given, this could possibly be smaller or bigger depending on the tree sizes.
-  - Finally I submit the job, the batch parameters being the parcluster, the parallel "parent" script, number of outputs (1) and input arguments ({}) (I haven't touched these), pool size (296), the working folder ('/scratch/project_2001208/Eemil') and AutoAddClientPath (false), which I also havent touched.
+  - Finally I submit the job, the batch parameters being the parcluster (c), the parallel "parent" script (@qsm_par_server), number of outputs (1) and input arguments ({}) (I haven't touched these), pool size (296) (This is the number of cores), the working folder ('/scratch/project_2001208/Eemil') and AutoAddClientPath (false), which I also havent touched.
   - https://www.mathworks.com/help/parallel-computing/batch.html Here you can find the input argument explanations for the batch command.
   - Note that the folder containing the segmented trees in the "parent script" needs to be in line with the working folder in the "batch" commmand. For example, if I have 
- this line in the "parent" script: ``trees = dir('qsm_batch_puhti/*.las');``, then the qsm_batch_puhti folder need to be located under here ``'/scratch/project_2001208/Eemil'``
+ this line in the "parent" script: ``trees = dir('qsm_batch_puhti/*.las');``, then the ``qsm_batch_puhti`` folder need to be located under here ``'/scratch/project_2001208/Eemil'``
+  - **You also need to have a "results" folder in your working directory!** e.g. ``/scratch/project_2001208/Eemil/results/``, otherwise your run will probably terminate
 
 ``>>c = parcluster;``  
 ``>>c.AdditionalProperties.QueueName = 'large';  ``  
@@ -36,3 +37,6 @@
 ``>>j = batch(c, @qsm_par_server, 1,{}, 'Pool',296, 'CurrentFolder','/scratch/project_2001208/Eemil','AutoAddClientPath', false);``  
 
 You should now be able to find your job on the Puhti dashboard, It might take some time for it to start processing. From my experience, checking the status via matlab is unreliable.
+
+
+- If you processed a large amount of trees, the results can be a little hard to download, however you can zip them by going to your directory in puhti dashboard, clicking on the "Open in terminal button" and typing  ``find results/ -type f -mtime -7 -exec zip -r results.zip {} \;`` where results is the directory where you have your QSM results and results.zip is the destination zip file.
