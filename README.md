@@ -16,9 +16,11 @@
 - To utilise the multiple cores on Puhti, the parallelisation should be done on a separate “parent” script from which you run the QSM scripts.
   - I didn’t get the make_models_parallel.m -script working correctly as is.
   - An example script is provided in this repository (qsm_par_server.m).
-    - Make sure to check that the parameters are modified for you needs
-- Below is an example of how I would run a large job of processing 296 trees in parallel. The details for the parcluster configurations can be found here https://docs.csc.fi/apps/matlab/ under "Configuring jobs".
+    - Make sure to check that the parameters are modified to your needs
+- Below is an example of how I would run a large job of processing 296 trees in parallel.
+  - The details for the parcluster configurations can be found here https://docs.csc.fi/apps/matlab/ under "Configuring jobs".
   - Since there are over 40 jobs, I'm using the 'large' QueueName.
+    - You could also run the job on fewer cores. This will of course increase the runtime, since all of the trees are not being processed simultaneously
   - I'm using the maximum time limit of 72 hours or three days for the 'large' partition
   - More details about the partitions can be found here: https://docs.csc.fi/computing/running/batch-job-partitions/
   - For each node 4g of memory is given, this could possibly be smaller or bigger depending on the tree sizes.
