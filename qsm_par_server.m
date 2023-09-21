@@ -34,7 +34,7 @@ parfor i = 1:length(trees)
     % Format optimal output
     formatSpec = [formatSpec, '_opt'];
     % Select optimal model and save it
-    [TreeData,OptModels,OptInputs,OptQSM] = select_optimum(QSM,'trunk+1branch+hbranch_mean_dis',formatSpec);
+    [TreeData,OptModels,OptInputs,OptQSM] = select_optimum(QSM,'trunk+1branch',formatSpec);
     % save_model_text(OptQSM,formatSpec, Center); -- This is for a slightly
     % modified version of the save_model_text.m which additionally outputs the trunk
     % base coordinates 
